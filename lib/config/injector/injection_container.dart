@@ -8,6 +8,7 @@ import 'package:minimal_todo/domain/usecases/delete_task_usecase.dart';
 import 'package:minimal_todo/domain/usecases/get_task_by_id_usecase.dart';
 import 'package:minimal_todo/domain/usecases/get_tasks_usecase.dart';
 import 'package:minimal_todo/domain/usecases/update_task_usecase.dart';
+import 'package:minimal_todo/presentation/blocs/theme/theme_bloc.dart';
 import 'package:minimal_todo/routes/app_route_conf.dart';
 
 final getIt = GetIt.instance;
@@ -39,4 +40,7 @@ Future<void> intializeDependencies() async {
   );
   getIt.registerLazySingleton(() => UpdateTaskUseCase(getIt<TaskRepository>()));
   getIt.registerLazySingleton(() => DeleteTaskUseCase(getIt<TaskRepository>()));
+
+  // Blocs
+  getIt.registerFactory(() => ThemeBloc());
 }
