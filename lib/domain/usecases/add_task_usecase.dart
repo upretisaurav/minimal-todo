@@ -4,9 +4,9 @@ import 'package:minimal_todo/core/usecases/base_usecase.dart';
 import 'package:minimal_todo/domain/entities/task_entity.dart';
 import 'package:minimal_todo/domain/repositories/task_repository.dart';
 
-class AddTaskUsecase implements UseCase<TaskEntity, AddTaskParams> {
+class AddTaskUseCase implements UseCase<TaskEntity, AddTaskParams> {
   final TaskRepository repository;
-  AddTaskUsecase(this.repository);
+  AddTaskUseCase(this.repository);
 
   @override
   Future<Either<Failure, TaskEntity>> call(AddTaskParams params) {

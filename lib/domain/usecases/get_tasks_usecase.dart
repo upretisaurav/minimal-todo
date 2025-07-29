@@ -5,10 +5,10 @@ import 'package:minimal_todo/domain/entities/task_entity.dart';
 import 'package:minimal_todo/domain/entities/task_filter_entity.dart';
 import 'package:minimal_todo/domain/repositories/task_repository.dart';
 
-class GetTasksUsecase implements UseCase<List<TaskEntity>, GetTasksParams> {
+class GetTasksUseCase implements UseCase<List<TaskEntity>, GetTasksParams> {
   final TaskRepository repository;
 
-  GetTasksUsecase(this.repository);
+  GetTasksUseCase(this.repository);
 
   @override
   Future<Either<Failure, List<TaskEntity>>> call(GetTasksParams params) {
