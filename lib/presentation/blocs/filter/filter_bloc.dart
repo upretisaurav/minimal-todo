@@ -41,12 +41,8 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   void _onClearDateRange(ClearDateRangeEvent event, Emitter<FilterState> emit) {
     emit(
       state.copyWith(
-        startDate: null,
-        endDate: null,
         hasActiveFilters: _checkHasActiveFilters(
           filter: state.currentFilter,
-          startDate: null,
-          endDate: null,
         ),
       ),
     );

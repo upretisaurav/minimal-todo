@@ -1,7 +1,7 @@
 class Path {
-  static const String home = "/home";
-  static const String splash = "/splash";
-  static const String addEditTask = "/add-edit-task";
+  static const String home = '/home';
+  static const String splash = '/splash';
+  static const String addEditTask = '/add-edit-task';
 }
 
 enum AppRoute {

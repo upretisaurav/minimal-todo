@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc() : super(ThemeInitial()) {
+  ThemeBloc() : super(const ThemeInitial()) {
     on<LoadSavedThemeEvent>(_onLoadSavedTheme);
     on<ToggleThemeEvent>(_onToggleTheme);
     on<SetThemeEvent>(_onSetTheme);
@@ -22,7 +22,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       final themeMode = ThemeMode.values[themeModeIndex];
       emit(ThemeLoaded(themeMode: themeMode));
     } catch (e) {
-      emit(ThemeLoaded(themeMode: ThemeMode.system));
+      emit(const ThemeLoaded(themeMode: ThemeMode.system));
     }
   }
 

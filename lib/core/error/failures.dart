@@ -28,5 +28,5 @@ class CacheFailure extends Failure {
 
 class TaskNotFoundFailure extends Failure {
   const TaskNotFoundFailure(String taskId)
-    : super("Task with ID $taskId not found", "TASK_NOT_FOUND");
+    : super('Task with ID $taskId not found', 'TASK_NOT_FOUND');
 }

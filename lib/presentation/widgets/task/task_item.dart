@@ -29,7 +29,7 @@ class TaskItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.taskCardBg,
           borderRadius: BorderRadius.circular(AppDimensions.radiusL),
-          border: Border.all(color: context.taskCardBorder, width: 1),
+          border: Border.all(color: context.taskCardBorder),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

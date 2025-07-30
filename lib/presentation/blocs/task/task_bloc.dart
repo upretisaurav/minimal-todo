@@ -64,7 +64,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             status: TaskStatus.success,
             tasks: tasks,
             filteredTasks: filteredTasks,
-            errorMessage: null,
           ),
         );
       },
@@ -91,7 +90,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             status: TaskStatus.success,
             tasks: updatedTasks,
             filteredTasks: filteredTasks,
-            errorMessage: null,
           ),
         );
       },
@@ -124,7 +122,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             status: TaskStatus.success,
             tasks: updatedTasks,
             filteredTasks: filteredTasks,
-            errorMessage: null,
           ),
         );
       },
@@ -157,7 +154,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             status: TaskStatus.success,
             tasks: updatedTasks,
             filteredTasks: filteredTasks,
-            errorMessage: null,
           ),
         );
       },
@@ -192,7 +188,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
             status: TaskStatus.success,
             tasks: updatedTasks,
             filteredTasks: filteredTasks,
-            errorMessage: null,
           ),
         );
       },
@@ -221,7 +216,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           state.copyWith(
             status: TaskStatus.success,
             selectedTask: task,
-            errorMessage: null,
           ),
         );
       },
