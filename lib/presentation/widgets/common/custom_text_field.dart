@@ -73,11 +73,11 @@ class CustomTextField extends StatelessWidget {
             prefixIcon: prefixIcon,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-              borderSide: BorderSide(color: context.colors.outline, width: 1),
+              borderSide: BorderSide(color: context.colors.outline),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-              borderSide: BorderSide(color: context.colors.outline, width: 1),
+              borderSide: BorderSide(color: context.colors.outline),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
@@ -85,7 +85,7 @@ class CustomTextField extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-              borderSide: const BorderSide(color: AppColors.error, width: 1),
+              borderSide: const BorderSide(color: AppColors.error),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
@@ -95,7 +95,6 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.radiusM),
               borderSide: BorderSide(
                 color: context.colors.outline.withAlpha(128),
-                width: 1,
               ),
             ),
             contentPadding: const EdgeInsets.symmetric(

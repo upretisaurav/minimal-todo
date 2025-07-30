@@ -23,5 +23,5 @@ class CacheException extends AppException {
 
 class TaskNotFoundException extends AppException {
   const TaskNotFoundException(String taskId)
-    : super("Task with ID $taskId not found", "TASK_NOT_FOUND");
+    : super('Task with ID $taskId not found', 'TASK_NOT_FOUND');
 }
