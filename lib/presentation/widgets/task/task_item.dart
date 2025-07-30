@@ -23,6 +23,7 @@ class TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onEdit,
+      onLongPress: onDelete,
       child: Container(
         padding: const EdgeInsets.all(AppDimensions.paddingM),
         decoration: BoxDecoration(
