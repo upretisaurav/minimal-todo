@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_todo/presentation/utils/logger.dart';
+import 'package:minimal_todo/core/utils/logger.dart';
 
 class RouteNavigatorObserver extends NavigatorObserver {
   @override

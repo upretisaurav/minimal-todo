@@ -9,7 +9,7 @@ class AppRouteConf {
   GoRouter get router => _router;
 
   late final _router = GoRouter(
-    initialLocation: AppRoute.home.path,
+    initialLocation: AppRoute.splash.path,
     debugLogDiagnostics: true,
     observers: [RouteNavigatorObserver()],
     routes: [

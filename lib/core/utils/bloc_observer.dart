@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:minimal_todo/presentation/utils/logger.dart';
+import 'package:minimal_todo/core/utils/logger.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
