@@ -49,8 +49,7 @@ class FilterTabs extends StatelessWidget {
 
   void _onFilterChanged(BuildContext context, TaskFilter filter) {
     context.read<FilterBloc>().add(ChangeFilterEvent(filter));
-    final filterEntity = context.read<FilterBloc>().state.toEntity();
-    context.read<TaskBloc>().add(LoadTasksEvent(filter: filterEntity));
+    context.read<TaskBloc>().add(ApplyFilterEvent(filter));
   }
 }
 

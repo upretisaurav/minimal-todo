@@ -66,3 +66,12 @@ class GetTaskByIdEvent extends TaskEvent {
 class RefreshTasksEvent extends TaskEvent {
   const RefreshTasksEvent();
 }
+
+class ApplyFilterEvent extends TaskEvent {
+  final TaskFilter filter;
+
+  const ApplyFilterEvent(this.filter);
+
+  @override
+  List<Object?> get props => [filter];
+}
