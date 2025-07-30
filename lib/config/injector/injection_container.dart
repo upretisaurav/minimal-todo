@@ -7,7 +7,10 @@ import 'package:minimal_todo/domain/usecases/add_task_usecase.dart';
 import 'package:minimal_todo/domain/usecases/delete_task_usecase.dart';
 import 'package:minimal_todo/domain/usecases/get_task_by_id_usecase.dart';
 import 'package:minimal_todo/domain/usecases/get_tasks_usecase.dart';
+import 'package:minimal_todo/domain/usecases/toggle_task_completion_usecase.dart';
 import 'package:minimal_todo/domain/usecases/update_task_usecase.dart';
+import 'package:minimal_todo/presentation/blocs/filter/filter_bloc.dart';
+import 'package:minimal_todo/presentation/blocs/task/task_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/theme/theme_bloc.dart';
 import 'package:minimal_todo/routes/app_route_conf.dart';
 
@@ -40,7 +43,21 @@ Future<void> intializeDependencies() async {
   );
   getIt.registerLazySingleton(() => UpdateTaskUseCase(getIt<TaskRepository>()));
   getIt.registerLazySingleton(() => DeleteTaskUseCase(getIt<TaskRepository>()));
+  getIt.registerLazySingleton(
+    () => ToggleTaskCompletionUseCase(getIt<TaskRepository>()),
+  );
 
   // Blocs
   getIt.registerFactory(() => ThemeBloc());
+  getIt.registerFactory(
+    () => TaskBloc(
+      getTasksUseCase: getIt<GetTasksUseCase>(),
+      getTaskByIdUseCase: getIt<GetTaskByIdUseCase>(),
+      addTaskUseCase: getIt<AddTaskUseCase>(),
+      updateTaskUseCase: getIt<UpdateTaskUseCase>(),
+      toggleTaskCompletionUseCase: getIt<ToggleTaskCompletionUseCase>(),
+      deleteTaskUseCase: getIt<DeleteTaskUseCase>(),
+    ),
+  );
+  getIt.registerFactory(() => FilterBloc());
 }

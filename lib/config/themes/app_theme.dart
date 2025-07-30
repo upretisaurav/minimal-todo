@@ -30,7 +30,8 @@ class AppTheme {
         onError: AppColors.white,
         outline: AppColors.lightOutline,
         outlineVariant: AppColors.lightOutlineVariant,
-        onSurfaceVariant: AppColors.lightOnSurfaceVariant,
+        surfaceContainer: AppColors.lightSurface,
+        surfaceContainerLowest: AppColors.lightSurfaceVariant,
       ),
 
       scaffoldBackgroundColor: AppColors.lightBackground,
@@ -121,7 +122,8 @@ class AppTheme {
         onError: AppColors.white,
         outline: AppColors.darkOutline,
         outlineVariant: AppColors.darkOutlineVariant,
-        onSurfaceVariant: AppColors.darkOnSurfaceVariant,
+        surfaceContainer: AppColors.darkSurface,
+        surfaceContainerLowest: AppColors.darkSurfaceVariant,
       ),
 
       scaffoldBackgroundColor: AppColors.darkBackground,
