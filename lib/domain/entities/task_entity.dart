@@ -1,6 +1,33 @@
 import 'package:equatable/equatable.dart';
+import 'package:minimal_todo/core/utils/app_date_utils.dart';
 
-enum TaskPriority { high, medium, low }
+enum TaskPriority {
+  high,
+  medium,
+  low;
+
+  String get displayName {
+    switch (this) {
+      case TaskPriority.high:
+        return 'High';
+      case TaskPriority.medium:
+        return 'Medium';
+      case TaskPriority.low:
+        return 'Low';
+    }
+  }
+
+  int get sortOrder {
+    switch (this) {
+      case TaskPriority.high:
+        return 3;
+      case TaskPriority.medium:
+        return 2;
+      case TaskPriority.low:
+        return 1;
+    }
+  }
+}
 
 class TaskEntity extends Equatable {
   final String id;
@@ -40,6 +67,12 @@ class TaskEntity extends Equatable {
       priority: priority ?? this.priority,
     );
   }
+
+  bool get hasDescription => description != null && description!.isNotEmpty;
+  bool get hasDueDate => dueDate != null;
+  bool get isOverdue => AppDateUtils.isOverdue(dueDate) && !isCompleted;
+  bool get isDueToday => AppDateUtils.isDueToday(dueDate);
+  bool get isDueTomorrow => AppDateUtils.isDueTomorrow(dueDate);
 
   @override
   List<Object?> get props => [

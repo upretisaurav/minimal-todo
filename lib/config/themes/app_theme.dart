@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../constants/colors.dart';
 
 class AppTheme {
@@ -20,18 +19,14 @@ class AppTheme {
       fontFamily: fontFamily,
 
       colorScheme: const ColorScheme.light(
-        brightness: Brightness.light,
         primary: AppColors.lightPrimary,
-        onPrimary: AppColors.lightOnPrimary,
         secondary: AppColors.lightSecondary,
         onSecondary: AppColors.lightOnSecondary,
-        surface: AppColors.lightSurface,
-        onSurface: AppColors.lightOnSurface,
         error: AppColors.error,
-        onError: AppColors.white,
         outline: AppColors.lightOutline,
         outlineVariant: AppColors.lightOutlineVariant,
-        onSurfaceVariant: AppColors.lightOnSurfaceVariant,
+        surfaceContainer: AppColors.lightSurface,
+        surfaceContainerLowest: AppColors.lightSurfaceVariant,
       ),
 
       scaffoldBackgroundColor: AppColors.lightBackground,
@@ -111,18 +106,15 @@ class AppTheme {
       fontFamily: fontFamily,
 
       colorScheme: const ColorScheme.dark(
-        brightness: Brightness.dark,
         primary: AppColors.darkPrimary,
-        onPrimary: AppColors.darkOnPrimary,
         secondary: AppColors.darkSecondary,
-        onSecondary: AppColors.darkOnSecondary,
         surface: AppColors.darkSurface,
-        onSurface: AppColors.darkOnSurface,
         error: AppColors.error,
         onError: AppColors.white,
         outline: AppColors.darkOutline,
         outlineVariant: AppColors.darkOutlineVariant,
-        onSurfaceVariant: AppColors.darkOnSurfaceVariant,
+        surfaceContainer: AppColors.darkSurface,
+        surfaceContainerLowest: AppColors.darkSurfaceVariant,
       ),
 
       scaffoldBackgroundColor: AppColors.darkBackground,

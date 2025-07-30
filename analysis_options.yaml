@@ -1,1 +1,12 @@
 include: package:flutter_lints/flutter.yaml
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    - avoid_print
+    - unnecessary_new
+    - prefer_final_locals
+    - prefer_single_quotes
+    - avoid_function_literals_in_foreach_calls
+    - avoid_redundant_argument_values
+    - avoid_positional_boolean_parameters
