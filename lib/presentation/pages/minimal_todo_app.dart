@@ -4,6 +4,7 @@ import 'package:minimal_todo/config/constants/size_config.dart';
 import 'package:minimal_todo/config/constants/strings.dart';
 import 'package:minimal_todo/config/injector/injection_container.dart' as di;
 import 'package:minimal_todo/config/themes/app_theme.dart';
+import 'package:minimal_todo/presentation/blocs/task/task_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/theme/theme_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/theme/theme_state.dart';
 import 'package:minimal_todo/routes/app_route_conf.dart';
@@ -20,6 +21,7 @@ class MinimalTodoApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider<ThemeBloc>(create: (_) => di.getIt<ThemeBloc>()),
+            BlocProvider<TaskBloc>(create: (_) => di.getIt<TaskBloc>()),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, themeState) {
