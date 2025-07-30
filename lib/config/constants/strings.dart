@@ -1,5 +1,7 @@
 class AppStrings {
   static const String appName = 'Minimal Todo App';
+  static const String myTasks = 'My Tasks';
+  static const String stayOrganized = 'Stay organized, get things done';
 
   // Error Messages - General
   static const String unexpectedError = 'An unexpected error occurred';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:minimal_todo/config/constants/strings.dart';
 import 'package:minimal_todo/presentation/blocs/filter/filter_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/task/task_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/task/task_event.dart';
@@ -46,7 +47,7 @@ class HomeView extends StatelessWidget {
                   const SizedBox(height: AppDimensions.paddingM),
 
                   Text(
-                    'My Tasks',
+                    AppStrings.myTasks,
                     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: context.colors.onSurface,
@@ -54,7 +55,7 @@ class HomeView extends StatelessWidget {
                   ),
                   const SizedBox(height: AppDimensions.paddingS),
                   Text(
-                    'Stay organized, get things done',
+                    AppStrings.stayOrganized,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: context.colors.onSurface.withAlpha(128),
                     ),
