@@ -5,6 +5,9 @@ import 'package:minimal_todo/config/constants/strings.dart';
 import 'package:minimal_todo/presentation/blocs/filter/filter_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/task/task_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/task/task_event.dart';
+import 'package:minimal_todo/presentation/blocs/theme/theme_bloc.dart';
+import 'package:minimal_todo/presentation/blocs/theme/theme_event.dart';
+import 'package:minimal_todo/presentation/blocs/theme/theme_state.dart';
 import 'package:minimal_todo/presentation/widgets/task/filter_tabs.dart';
 import 'package:minimal_todo/presentation/widgets/task/task_list.dart';
 import 'package:minimal_todo/routes/app_route_path.dart';
@@ -46,22 +49,52 @@ class HomeView extends StatelessWidget {
                 children: [
                   const SizedBox(height: AppDimensions.paddingM),
 
-                  Text(
-                    AppStrings.myTasks,
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.colors.onSurface,
-                    ),
-                  ),
-                  const SizedBox(height: AppDimensions.paddingS),
-                  Text(
-                    AppStrings.stayOrganized,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: context.colors.onSurface.withAlpha(128),
-                    ),
-                  ),
-                  const SizedBox(height: AppDimensions.paddingL),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppStrings.myTasks,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.headlineLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: context.colors.onSurface,
+                              ),
+                            ),
+                            const SizedBox(height: AppDimensions.paddingS),
+                            Text(
+                              AppStrings.stayOrganized,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.copyWith(
+                                color: context.colors.onSurface.withAlpha(128),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
 
+                      BlocBuilder<ThemeBloc, ThemeState>(
+                        builder: (context, state) {
+                          return IconButton(
+                            onPressed: () => _toggleTheme(context),
+                            icon: Icon(
+                              _getThemeIcon(state.themeMode, context),
+                              color: context.colors.onSurface,
+                              size: 24,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: AppDimensions.paddingL),
                   const FilterTabs(),
                 ],
               ),
@@ -85,5 +118,23 @@ class HomeView extends StatelessWidget {
     context.push(AppRoute.addEditTask.path).then((_) {
       taskBloc.add(const RefreshTasksEvent());
     });
+  }
+
+  void _toggleTheme(BuildContext context) {
+    context.read<ThemeBloc>().add(const ToggleThemeEvent());
+  }
+
+  IconData _getThemeIcon(ThemeMode themeMode, BuildContext context) {
+    switch (themeMode) {
+      case ThemeMode.light:
+        return Icons.light_mode;
+      case ThemeMode.dark:
+        return Icons.dark_mode;
+      case ThemeMode.system:
+        final brightness = MediaQuery.of(context).platformBrightness;
+        return brightness == Brightness.dark
+            ? Icons.brightness_auto
+            : Icons.brightness_auto;
+    }
   }
 }
