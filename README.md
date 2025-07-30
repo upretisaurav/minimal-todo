@@ -2,7 +2,7 @@
 
 A clean, efficient Flutter task management application built with Clean Architecture principles, BLoC state management, and local data persistence using Hive.
 
-## 🏗️ Architecture
+## Architecture
 
 This project follows **Clean Architecture** principles with clear separation of concerns across three main layers:
 
@@ -18,7 +18,7 @@ This project follows **Clean Architecture** principles with clear separation of 
 └─────────────────────────────────────────────────────────┘
 ```
 
-#### 🎨 Presentation Layer (`lib/presentation/`)
+#### Presentation Layer (`lib/presentation/`)
 
 - **BLoC Pattern**: State management using `flutter_bloc`
   - `TaskBloc`: Manages task CRUD operations
@@ -28,7 +28,7 @@ This project follows **Clean Architecture** principles with clear separation of 
 - **Widgets**: Reusable UI components organized by feature
 - **Utils**: Presentation-specific utilities
 
-#### 🎯 Domain Layer (`lib/domain/`)
+#### Domain Layer (`lib/domain/`)
 
 - **Entities**: Pure Dart objects representing core business models
 - **Use Cases**: Single-responsibility business logic operations
@@ -37,25 +37,25 @@ This project follows **Clean Architecture** principles with clear separation of 
   - `ToggleTaskCompletionUsecase`
 - **Repository Contracts**: Abstract interfaces for data operations
 
-#### 💾 Data Layer (`lib/data/`)
+#### Data Layer (`lib/data/`)
 
 - **Data Sources**: Local storage implementation using Hive
 - **Models**: Data transfer objects with JSON serialization
 - **Repository Implementation**: Concrete implementation of domain contracts
 
-### 🔧 Core Infrastructure (`lib/core/`)
+### Core Infrastructure (`lib/core/`)
 
 - **Error Handling**: Custom exceptions and failure types
 - **Base Use Cases**: Generic use case interface
 - **Utils**: Cross-cutting concerns like BLoC observer
 
-### ⚙️ Configuration (`lib/config/`)
+### Configuration (`lib/config/`)
 
 - **Dependency Injection**: GetIt setup for IoC container
 - **Constants**: App-wide constants (colors, dimensions, strings)
 - **Themes**: Material Design theme configuration
 
-## 🎨 Design Decisions
+## Design Decisions
 
 ### State Management
 
@@ -81,7 +81,7 @@ This project follows **Clean Architecture** principles with clear separation of 
 - **Responsive Design**: Adaptive layouts using `SizeConfig`
 - **Clean Interface**: Minimal, distraction-free task management
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -140,7 +140,7 @@ flutter build ios --release
 - **Offline Storage**: All data persisted locally using Hive
 - **Real-time Updates**: Instant UI updates with BLoC state management
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 lib/
@@ -169,7 +169,7 @@ lib/
 └── routes/                     # Navigation setup
 ```
 
-## 🔨 Development Tools
+## Development Tools
 
 - **State Management**: flutter_bloc
 - **Local Database**: hive, hive_flutter, shared_preferences
@@ -178,7 +178,7 @@ lib/
 - **Navigation**: go_router
 - **Logging**: logger
 
-## 📸 Screenshots
+## Screenshots
 
 ### Light Theme
 
@@ -196,6 +196,6 @@ lib/
   <img src="screenshots/dark/filter.png" alt="Filter - Dark" height="350"/>
 </p>
 
-## 🎥 Demo Video
+## Demo Video
 
 [![Watch the demo](https://img.youtube.com/vi/NWcu_qOWkPI/0.jpg)](https://youtube.com/shorts/NWcu_qOWkPI)
