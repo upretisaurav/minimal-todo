@@ -86,7 +86,7 @@ class HomeView extends StatelessWidget {
                             icon: Icon(
                               _getThemeIcon(state.themeMode, context),
                               color: context.colors.onSurface,
-                              size: 24,
+                              size: AppDimensions.iconM,
                             ),
                           );
                         },
