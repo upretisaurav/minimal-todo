@@ -38,6 +38,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<RefreshTasksEvent>(_onRefreshTasks);
   }
 
+  // Getter for current filter (for UI to access)
+  TaskFilter get currentFilter => _currentFilter;
+
   Future<void> _onLoadTasks(
     LoadTasksEvent event,
     Emitter<TaskState> emit,
@@ -58,6 +61,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         ),
       ),
       (tasks) {
+        print('Applying filter: $_currentFilter on tasks: $tasks');
         final filteredTasks = _applyFilter(tasks, _currentFilter);
         emit(
           state.copyWith(
@@ -113,9 +117,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       ),
       (updatedTask) {
         final updatedTasks =
-            List<TaskEntity>.from(state.tasks)
-              ..removeWhere((task) => task.id == updatedTask.id)
-              ..add(updatedTask);
+            state.tasks.map((task) {
+              return task.id == updatedTask.id ? updatedTask : task;
+            }).toList();
+
         final filteredTasks = _applyFilter(updatedTasks, _currentFilter);
         emit(
           state.copyWith(
@@ -146,8 +151,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         ),
       ),
       (success) {
-        final updatedTasks = List<TaskEntity>.from(state.tasks)
-          ..removeWhere((task) => task.id == event.taskId);
+        final updatedTasks =
+            state.tasks.where((task) => task.id != event.taskId).toList();
         final filteredTasks = _applyFilter(updatedTasks, _currentFilter);
         emit(
           state.copyWith(
@@ -176,12 +181,18 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         ),
       ),
       (updatedTask) {
-        final updatedTasks =
-            state.tasks
-                .map((task) => task.id == updatedTask.id ? updatedTask : task)
-                .toList();
+        print(
+          'Task toggled: ${updatedTask.id} -> isCompleted: ${updatedTask.isCompleted}',
+        );
 
+        final updatedTasks =
+            state.tasks.map((task) {
+              return task.id == updatedTask.id ? updatedTask : task;
+            }).toList();
+
+        print('Applying filter: $_currentFilter on tasks: $updatedTasks');
         final filteredTasks = _applyFilter(updatedTasks, _currentFilter);
+        print('Filtered tasks: $filteredTasks');
 
         emit(
           state.copyWith(
@@ -212,12 +223,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         ),
       ),
       (task) {
-        emit(
-          state.copyWith(
-            status: TaskStatus.success,
-            selectedTask: task,
-          ),
-        );
+        emit(state.copyWith(status: TaskStatus.success, selectedTask: task));
       },
     );
   }
@@ -229,6 +235,18 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     add(LoadTasksEvent(filter: _createCurrentFilterEntity()));
   }
 
+  void _onApplyFilter(ApplyFilterEvent event, Emitter<TaskState> emit) {
+    print('Applying current filter: ${event.filter}');
+
+    print('Applying filter: ${event.filter} on tasks: ${state.tasks}');
+    final filteredTasks = _applyFilter(state.tasks, event.filter);
+    print('Filtered tasks: $filteredTasks');
+
+    emit(
+      state.copyWith(filteredTasks: filteredTasks, currentFilter: event.filter),
+    );
+  }
+
   List<TaskEntity> _applyFilter(List<TaskEntity> tasks, TaskFilter filter) {
     switch (filter) {
       case TaskFilter.all:
@@ -238,13 +256,6 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       case TaskFilter.completed:
         return tasks.where((task) => task.isCompleted).toList();
     }
-  }
-
-  void _onApplyFilter(ApplyFilterEvent event, Emitter<TaskState> emit) {
-    _currentFilter = event.filter;
-    final filteredTasks = _applyFilter(state.tasks, _currentFilter);
-
-    emit(state.copyWith(filteredTasks: filteredTasks));
   }
 
   TaskFilterEntity? _createCurrentFilterEntity() {

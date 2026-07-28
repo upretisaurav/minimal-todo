@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:minimal_todo/domain/entities/task_entity.dart';
+import 'package:minimal_todo/domain/entities/task_filter_entity.dart';
 
 enum TaskStatus { initial, loading, success, failure }
 
@@ -9,6 +10,7 @@ class TaskState extends Equatable {
   final List<TaskEntity> filteredTasks;
   final TaskEntity? selectedTask;
   final String? errorMessage;
+  final TaskFilter currentFilter;
 
   const TaskState({
     this.status = TaskStatus.initial,
@@ -16,6 +18,7 @@ class TaskState extends Equatable {
     this.filteredTasks = const [],
     this.selectedTask,
     this.errorMessage,
+    this.currentFilter = TaskFilter.all,
   });
 
   TaskState copyWith({
@@ -24,6 +27,7 @@ class TaskState extends Equatable {
     List<TaskEntity>? filteredTasks,
     TaskEntity? selectedTask,
     String? errorMessage,
+    TaskFilter? currentFilter,
   }) {
     return TaskState(
       status: status ?? this.status,
@@ -31,6 +35,7 @@ class TaskState extends Equatable {
       filteredTasks: filteredTasks ?? this.filteredTasks,
       selectedTask: selectedTask ?? this.selectedTask,
       errorMessage: errorMessage ?? this.errorMessage,
+      currentFilter: currentFilter ?? this.currentFilter,
     );
   }
 
@@ -52,5 +57,6 @@ class TaskState extends Equatable {
     filteredTasks,
     selectedTask,
     errorMessage,
+    currentFilter,
   ];
 }

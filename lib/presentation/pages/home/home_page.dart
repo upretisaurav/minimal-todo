@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:minimal_todo/config/constants/strings.dart';
-import 'package:minimal_todo/presentation/blocs/filter/filter_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/task/task_bloc.dart';
 import 'package:minimal_todo/presentation/blocs/task/task_event.dart';
 import 'package:minimal_todo/presentation/blocs/theme/theme_bloc.dart';
@@ -20,13 +19,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<TaskBloc>(
-          create: (_) => getIt<TaskBloc>()..add(const LoadTasksEvent()),
-        ),
-        BlocProvider<FilterBloc>(create: (_) => getIt<FilterBloc>()),
-      ],
+    return BlocProvider<TaskBloc>(
+      create: (_) => getIt<TaskBloc>()..add(const LoadTasksEvent()),
       child: const HomeView(),
     );
   }

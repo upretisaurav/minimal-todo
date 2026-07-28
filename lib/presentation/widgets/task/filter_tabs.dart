@@ -4,19 +4,19 @@ import '../../../config/constants/colors.dart';
 import '../../../config/constants/dimensions.dart';
 import '../../../config/constants/strings.dart';
 import '../../../domain/entities/task_filter_entity.dart';
-import '../../blocs/filter/filter_bloc.dart';
-import '../../blocs/filter/filter_event.dart';
-import '../../blocs/filter/filter_state.dart';
 import '../../blocs/task/task_bloc.dart';
 import '../../blocs/task/task_event.dart';
+import '../../blocs/task/task_state.dart';
 
 class FilterTabs extends StatelessWidget {
   const FilterTabs({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilterBloc, FilterState>(
-      builder: (context, filterState) {
+    return BlocBuilder<TaskBloc, TaskState>(
+      builder: (context, taskState) {
+        final currentFilter = taskState.currentFilter;
+
         return Container(
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
@@ -27,17 +27,17 @@ class FilterTabs extends StatelessWidget {
             children: [
               _FilterTab(
                 title: AppStrings.filterAll,
-                isSelected: filterState.currentFilter == TaskFilter.all,
+                isSelected: currentFilter == TaskFilter.all,
                 onTap: () => _onFilterChanged(context, TaskFilter.all),
               ),
               _FilterTab(
                 title: AppStrings.filterActive,
-                isSelected: filterState.currentFilter == TaskFilter.active,
+                isSelected: currentFilter == TaskFilter.active,
                 onTap: () => _onFilterChanged(context, TaskFilter.active),
               ),
               _FilterTab(
                 title: AppStrings.filterCompleted,
-                isSelected: filterState.currentFilter == TaskFilter.completed,
+                isSelected: currentFilter == TaskFilter.completed,
                 onTap: () => _onFilterChanged(context, TaskFilter.completed),
               ),
             ],
@@ -48,7 +48,6 @@ class FilterTabs extends StatelessWidget {
   }
 
   void _onFilterChanged(BuildContext context, TaskFilter filter) {
-    context.read<FilterBloc>().add(ChangeFilterEvent(filter));
     context.read<TaskBloc>().add(ApplyFilterEvent(filter));
   }
 }

@@ -38,7 +38,7 @@ class TaskList extends StatelessWidget {
 
         return Container(
           margin: const EdgeInsets.symmetric(
-            horizontal: AppDimensions.paddingL,
+            horizontal: AppDimensions.paddingM,
           ),
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
